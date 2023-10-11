@@ -1,0 +1,217 @@
+.navbar {
+    height: 50px;
+    background-color: rgb(101, 113, 182);
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+}
+
+.listItem {
+    margin-right: 20px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.home {
+    display: flex;
+    padding: 50px 100px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+}
+
+.card {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+    border-radius: 20px;
+}
+
+.img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin: 20px 0px;
+}
+
+.cardImg {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin: 20px 0px;
+}
+
+.desc {
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 25px;
+}
+
+.cardButton {
+    border: none;
+    background-color: rgb(101, 113, 182);
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px;
+    color: white;
+}
+
+
+.post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.postImg {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.postDesc {
+    font-weight: 900;
+    color: gray;
+    font-size: 30px;
+    line-height: 30px;
+}
+
+.login {
+    height: calc(100vh - 50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 60%;
+    height: 75%;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, -30px -33px 15px -13px rgba(0,0,0,0); 
+box-shadow: 0px 10px 13px -7px #000000, -30px -33px 15px -13px rgba(0,0,0,0);
+    display: flex;
+    justify-content: center;
+
+}
+
+.right,.left{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.center {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+}
+
+.or {
+    border: 2px solid gray;
+    border-radius: 50%;
+    padding: 10px;
+    color: gray;
+    background-color: white;
+    font-weight: bold;
+}
+
+
+.line {
+    width: 0.5px;
+    height: 75%;
+    background-color: rgb(184, 182, 182);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    z-index: -1;
+}
+
+.loginButton {
+    width: 150px;
+    padding: 15px 25px;
+    border-radius: 5px;
+    color: #000000;
+    align-items: center;
+    display: flex;
+    font-weight: bolder;
+    background-color: rgb(231, 231, 231);
+    margin: 10px;
+}
+    
+.icon {
+    width: 50px;
+    height: 50px;
+}
+
+.google {
+  
+}
+
+
+.facebook {
+  
+}
+
+.github {
+ 
+}
+
+input {
+    width: 200px;
+    height: 40px;
+    padding: 15x 20px;
+    margin: 5px;
+}
+
+.submit {
+    width: 200px;
+    background-color: rgb(101, 113, 182);
+    color: white;
+    font-weight: bolder;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+
+}
+
+.loginTitle {
+    position: absolute;
+    top: 150px;
+    color: lightgray;
+}
+
+
+
+.link {
+    color:  inherit;
+    text-decoration: none;
+}
