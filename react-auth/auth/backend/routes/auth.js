@@ -2,7 +2,7 @@ const router = require("express").Router()
 const passport = require("passport")
 
 const CLIENT_URL = "http://localhost:5173/"
-
+const ABOUT = "http://localhost:5173/About"
 
 router.get("/login/success", (req, res) =>{
     if(req.user) {
@@ -29,7 +29,7 @@ router.get("/logout", (req,res) => {
 router.get("/google", passport.authenticate("google", {scope: ["profile"]}))
 
 router.get("/google/callback", passport.authenticate("google",{
-    successRedirect: CLIENT_URL,
+    successRedirect: ABOUT,
     failureRedirect: "login/failed"
 }))
 

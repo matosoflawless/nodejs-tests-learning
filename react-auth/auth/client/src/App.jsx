@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Post from './pages/Post'
 import Login from './pages/Login'
 import { useEffect, useState } from 'react'
+import About from './pages/About'
 
 function App() {
   const [user , setUser] = useState(null)
@@ -38,8 +39,10 @@ function App() {
     <Navbar user={user}/>
     <Routes>
       <Route path='/' element={<Home/>}/>
+      <Route path='/About' element={<About/>}/>
       <Route path='/login' element={user ? <Navigate to="/"/> : <Login/>}/>
       <Route path='/post/:id' element={user ? <Post/> : <Navigate to="/login"/>}/>
+
     </Routes>
   </div>
   </BrowserRouter>
