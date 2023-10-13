@@ -1,0 +1,14 @@
+{
+  "name": "your-app",
+  "version": "1.0.0",
+  "description": "Your application description",
+  "scripts": {
+    "start": "node your-script.js",
+    "dev": "nodemon app.js",
+    "test": "mocha",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
