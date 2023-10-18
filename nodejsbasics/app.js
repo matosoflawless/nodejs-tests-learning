@@ -5,9 +5,11 @@ const fs = require("fs")
 const http = require("http")
 const { error } = require("console")
 const url = require("url")
-const replaceHtml = require("./Modules/replaceHtml")
+const events = require("events")
 
 //USER DEFINED MODULES
+const replaceHtml = require("./Modules/replaceHtml")
+const user = require("./Modules/user")
 
 
 // // CLASS 4 - READ INPUTS FROM TERMINAL
@@ -55,12 +57,12 @@ const replaceHtml = require("./Modules/replaceHtml")
 // })
 // console.log("reading file")
 
-const html = fs.readFileSync("./Template/index.html", "utf-8")
+// const html = fs.readFileSync("./Template/index.html", "utf-8")
 
 
-let products = JSON.parse(fs.readFileSync("./Data/Products.json", "utf-8"))
-let productsListHtml = fs.readFileSync("./Template/product-list.html", "utf-8")
-let productsDetailHtml = fs.readFileSync("./Template/product-details.html", "utf-8")
+// let products = JSON.parse(fs.readFileSync("./Data/Products.json", "utf-8"))
+// let productsListHtml = fs.readFileSync("./Template/product-list.html", "utf-8")
+// let productsDetailHtml = fs.readFileSync("./Template/product-details.html", "utf-8")
 
 
 
@@ -77,9 +79,9 @@ let productsDetailHtml = fs.readFileSync("./Template/product-details.html", "utf
 //         output = output.replace("{{%ID%}}", product.id)
 //         output = output.replace("{{%ROM%}}", product.ROM)
 //         output = output.replace("{{%DESC%}}", product.Description)
-    
+
 //         return output
-    
+
 // }
 
 // const server = http.createServer((request, response) => {
@@ -134,57 +136,108 @@ let productsDetailHtml = fs.readFileSync("./Template/product-details.html", "utf
 // })
 const server = http.createServer()
 
-server.on("request",(request,response)=>{
-    let {query, pathname: path} =url.parse(request.url,true)
-    // console.log(x)
-        // let path = request.url
-        if (path === "/" || path.toLocaleLowerCase() === `/home`) {
-            response.writeHead(200, {
-                "Content-Type": "text/html",
-                "my-header": "have a nice day you headers watcher!!!"
-            })
-            response.end(html.replace(`{{%CONTENT%}}`, `You are at homepage`))
-        } else if (path.toLocaleLowerCase() === "/about") {
-            response.writeHead(200, {
-                "Content-Type": "text/html",
-                "my-header": "have a nice day you headers watcher!!!"
-            })
-            response.end(html.replace(`{{%CONTENT%}}`, `You are at About Page`))
-        } else if (path.toLocaleLowerCase() === `/contact`) {
-            response.writeHead(200, {
-                "Content-Type": "text/html",
-                "my-header": "have a nice day you headers watcher!!!"
-            })
-            response.end(html.replace(`{{%CONTENT%}}`, `You are at contacts page`))
-        } else if (path.toLocaleLowerCase() === `/products`) {
-            if (!query.id){
-               let productHtmlArray = products.map((prod) => {
-                return replaceHtml(productsListHtml, prod)
-                })
-            let productResponseHtml = html.replace("{{%CONTENT%}}", productHtmlArray.join(","))
-            response.writeHead(200, {"Content-Type": "text/html" })
-            response.end(productResponseHtml)
-            } else {
-                let prod = products[query.id]
-                let productDetailResponseHtml = replaceHtml(productsDetailHtml, prod)
-                response.end(html.replace("{{%CONTENT%}}", productDetailResponseHtml))
-            } 
-    
-        }
-    
-    
-        else {
-            response.writeHead(404, {
-                "Content-Type": "text/html",
-                "my-header": "aqui não há nada meu irmão"
-            })
-            response.end(html.replace(`{{%CONTENT%}}`, `Error 404: page does not exist`))
-        }
-    
-    
-})
+// server.on("request",(request,response)=>{
+//     let {query, pathname: path} =url.parse(request.url,true)
+//     // console.log(x)
+//         // let path = request.url
+//         if (path === "/" || path.toLocaleLowerCase() === `/home`) {
+//             response.writeHead(200, {
+//                 "Content-Type": "text/html",
+//                 "my-header": "have a nice day you headers watcher!!!"
+//             })
+//             response.end(html.replace(`{{%CONTENT%}}`, `You are at homepage`))
+//         } else if (path.toLocaleLowerCase() === "/about") {
+//             response.writeHead(200, {
+//                 "Content-Type": "text/html",
+//                 "my-header": "have a nice day you headers watcher!!!"
+//             })
+//             response.end(html.replace(`{{%CONTENT%}}`, `You are at About Page`))
+//         } else if (path.toLocaleLowerCase() === `/contact`) {
+//             response.writeHead(200, {
+//                 "Content-Type": "text/html",
+//                 "my-header": "have a nice day you headers watcher!!!"
+//             })
+//             response.end(html.replace(`{{%CONTENT%}}`, `You are at contacts page`))
+//         } else if (path.toLocaleLowerCase() === `/products`) {
+//             if (!query.id){
+//                let productHtmlArray = products.map((prod) => {
+//                 return replaceHtml(productsListHtml, prod)
+//                 })
+//             let productResponseHtml = html.replace("{{%CONTENT%}}", productHtmlArray.join(","))
+//             response.writeHead(200, {"Content-Type": "text/html" })
+//             response.end(productResponseHtml)
+//             } else {
+//                 let prod = products[query.id]
+//                 let productDetailResponseHtml = replaceHtml(productsDetailHtml, prod)
+//                 response.end(html.replace("{{%CONTENT%}}", productDetailResponseHtml))
+//             } 
+
+//         }
+
+
+//         else {
+//             response.writeHead(404, {
+//                 "Content-Type": "text/html",
+//                 "my-header": "aqui não há nada meu irmão"
+//             })
+//             response.end(html.replace(`{{%CONTENT%}}`, `Error 404: page does not exist`))
+//         }
+
+
+// })
 
 
 server.listen(8000, "localhost", () => {
     console.log("server is up and running")
+})
+
+
+// let myEmitter = new user()
+
+// myEmitter.on("userCreated", (id, name) => {
+//     console.log(`New user ${name} with ID ${id} is created`)
+// })
+
+// myEmitter.on("userCreated", (id, name) => {
+//     console.log(`New user ${name} with ID ${id} is created in the database`)
+// })
+// myEmitter.emit("userCreated", 101, "John")
+
+
+//Streams pratice
+//SOLUTION 1 : WITHOUT READABLE OF WRITABLE STREAM
+// server.on("request", (req,res) => {
+//     fs.readFile("./Files/large-file.txt", (err,data) =>{
+//         if(err){
+//             res.end("Something went wrong")
+//             return
+//         }
+//         res.end(data)
+//     })
+// } )
+
+
+//SOLUTION 2: USING READABLE AND WRITABLE STREAM
+// server.on("request", (req, res) => {
+//     let rs = fs.createReadStream("./Files/large-file.txt")
+
+//     rs.on(`data`, (chunk) => {
+//         res.write(chunk)
+//     })
+//     rs.on("end", () => {
+//         res.end()
+//     })
+
+
+//     rs.on("error", (error) => {
+//         res.end(error.message)
+//     })
+// })
+
+
+//SOLUTION 3 USING PIPE METHOD
+server.on("request", (req,res) =>{
+let rs = fs.createReadStream("./Files/large-file.txt")
+    rs.pipe(res)
+    //readableSource.pipe(writableStream)
 })
